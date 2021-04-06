@@ -14,39 +14,24 @@ def main():# this function call all the functions used
 	Gff = sys.argv[1]
 	Reference = sys.argv[2]
 	Vcf = sys.argv[3]
-	#Out = sys.argv[4]
-	#Alt = sys.argv[5]
 
 	Upperlimit_list, Lowerlimit_list, Phase_list = make_list_of_CDS(Gff)
 	seq = extract_seq(Reference)
 	seq_list = list(seq)
-	#print(seq)
 	CDS_dict, CDS_seq_list = make_dict_of_CDSseq(Upperlimit_list,Lowerlimit_list,Phase_list,seq)
 	Position_list, Mutation_list = make_list_of_Positions(Vcf)
 	
-	#print(Mutation_list)
 	Position_list =list(map(int, Position_list))
-	#print(Position_list)
-	#print(mutated_seq)
 	mutated_seq_list = replace_positions_in_ref_genome(seq_list,Position_list, Mutation_list)
 	mutated_seq = ''.join(mutated_seq_list)
-	#print(seq_list,Position_list,Mutation_list)
+
 	mutated_CDS_dict, mutated_CDS_seq_list = make_dict_of_CDSseq(Upperlimit_list,Lowerlimit_list,Phase_list,mutated_seq)
 	
 	dict_check = Check_type_of_mutation(CDS_dict, mutated_CDS_dict)
 	feature_dict = make_list_of_Positions_in_genome(dict_check)
 	print(feature_dict)
-	#print(seq_list[83])
-	#print(mutated_seq_list[83])
-	
-	#print(len(CDS_dict))
-	#print(len(dict_check))
-	#print(mutated_CDS_dict)
-	#print(dict_check.keys())
-	#write_to_file(Out, dict_check)
-	#write_to_file(Alt,mutated_CDS_dict)
 
-#
+
 def make_list_of_CDS(input_file): # this function considers Coding regions only and make lists of start positions, end positions and phase of the CDS.
 	with open(input_file, 'r') as fin:
 		Upperlimit_list = []
