@@ -7,9 +7,7 @@ the code takes 3 files as input:-
 1. fasta file-reference genome file
 2. gff file-with details of coding region positions, 
 3. vcf file-which contains details of mutations, their position and alternative allele etc.
-and writes the position of mutation, 
-				type of mutation and 
-				alternative amino acid sequence in an output file''' 
+and writes the position of mutation in genome and type of mutation in an output file''' 
 
 #sys.argv[1] = Gallus.gff3
 #sys.argv[2] = Gallus.fa
